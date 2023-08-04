@@ -1,0 +1,6 @@
+const path = require('path');//importa a biblioteca de path para trabalhar com pastas
+
+module.exports = {
+'config': path.resolve(__dirname, 'src', 'config', 'database.js'),//aponta para aonde esta configurado o banco de dados
+'migrations-path': path.resolve(__dirname, 'src', 'database', 'migrations')//aponta para a pasta migretions
+};

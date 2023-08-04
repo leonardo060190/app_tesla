@@ -1,0 +1,119 @@
+Exercícios
+
+Programação de Aplicativos x Banco de Dados
+
+A Tesla, líder global na produção de veículos elétricos e tecnologias de energia
+sustentável, contratou você para desenvolver uma parte crítica do sistema interno
+de gerenciamento de vendas. Com a expansão constante da empresa e o
+lançamento de novos produtos, a Tesla precisa de um sistema robusto e eficiente
+para gerenciar clientes, pedidos, produtos, e inventário.
+
+Como um desenvolvedor de banco de dados na equipe, você está encarregado de
+projetar e implementar o esquema de banco de dados que suportará essa nova
+iniciativa. Você trabalhará em estreita colaboração com outras equipes da Tesla,
+incluindo vendas, fabricação, logística, e atendimento ao cliente, para garantir que o
+sistema atenda às suas diversas necessidades.
+
+Contexto dos Exercícios:
+
+Exercício 1 (Criando Tabelas): Projetar a estrutura de dados para armazenar
+informações de clientes e pedidos de carros.
+Exercício 2 (Inserção de Dados): Inserir dados de teste para simular os
+registros de clientes e as ordens de compra.
+Exercício 3 (Consultas Básicas): Criar consultas para relatórios
+frequentemente solicitados pela equipe de vendas.
+Exercício 4 (Consultas com JOIN): Combinar informações de diferentes
+partes do negócio para fornecer insights abrangentes.
+Exercício 5 (Atualização e Deleção): Implementar operações para alterar o
+status dos pedidos e gerenciar registros de clientes.
+Exercício 6 (Agregação e Agrupamento): Desenvolver métricas para a equipe
+de liderança avaliar o desempenho das vendas.
+Exercício 7 (Subconsultas e Vistas): Criar consultas complexas para análises
+avançadas e relatórios personalizados.
+
+Ao concluir esses exercícios, você não apenas terá desenvolvido habilidades
+essenciais em SQL, mas também terá contribuído para um projeto que impacta
+diretamente a missão da Tesla de acelerar a transição do mundo para a energia
+sustentável. Essa é uma oportunidade única para aplicar suas habilidades em um
+contexto real e fazer parte de uma revolução na indústria automotiva.
+Prepare-se para colocar seus conhecimentos em prática e enfrentar os desafios que
+vêm pela frente. A Tesla conta com você!
+
+Crie um banco de dados chamado tesla
+
+Exercício 1 (Criando Tabelas):
+
+Você está começando o projeto e precisa definir a estrutura do banco de dados. Crie
+as tabelas para armazenar informações de clientes, carros, pedidos, e inventário.
+
+● Clientes: Campos devem incluir ID, nome, email, telefone, e endereço.
+
+● Carros: Campos devem incluir ID, modelo, preço, e características.
+
+● Pedidos: Campos devem incluir ID, ID do cliente, ID do carro, data do pedido,
+status do pedido.
+
+● Inventário: Campos devem incluir ID, ID do carro, quantidade em estoque.
+
+Exercício 2 (Inserção de Dados):
+
+Agora que as tabelas estão prontas, você precisa preenchê-las com alguns dados de
+teste. Escreva comandos SQL para:
+
+● Inserir pelo menos 5 clientes diferentes.
+
+● Inserir pelo menos 3 modelos diferentes de carros.
+
+● Inserir pedidos associados a esses clientes e carros.
+
+● Atualizar o inventário com as quantidades disponíveis dos carros.
+
+Exercício 3 (Consultas Básicas):
+
+A equipe de vendas precisa de relatórios rápidos e precisos. Escreva consultas SQL
+para:
+
+● Listar todos os clientes.
+
+● Encontrar todos os pedidos feitos por um cliente específico.
+
+● Mostrar os carros disponíveis no inventário.
+
+Exercício 4 (Consultas com JOIN):
+
+A Tesla precisa de análises mais complexas. Escreva consultas SQL para:
+
+● Listar todos os pedidos junto com informações do cliente e detalhes do carro.
+
+● Mostrar o inventário junto com os detalhes do carro.
+
+Exercício 5 (Atualização e Deleção):
+
+As operações de negócios mudam constantemente. Escreva comandos SQL para:
+
+● Atualizar o status de um pedido específico.
+
+● Deletar um cliente que deseja ser removido do banco de dados.
+
+Exercício 6 (Agregação e Agrupamento):
+
+A liderança precisa de métricas. Escreva consultas SQL para:
+
+● Calcular o total de vendas por modelo de carro.
+
+● Mostrar o número médio de carros vendidos por mês.
+
+Exercício 7 (Subconsultas e Views):
+
+Para análises avançadas e relatórios personalizados, escreva consultas SQL para:
+
+● Encontrar o cliente que comprou a maior quantidade de carros.
+
+● Criar uma visão que mostre os detalhes do pedido juntamente com
+informações do cliente e carro.
+
+Esses exercícios foram projetados para cobrir diferentes aspectos do SQL e
+representam tarefas típicas que você enfrentaria ao trabalhar no desenvolvimento
+de banco de dados na Tesla. Eles vão desde a criação de tabelas e inserção de
+dados até consultas complexas e análises avançadas. A aplicação desses conceitos
+em um contexto real torna o aprendizado mais concreto e a prática mais envolvente.
