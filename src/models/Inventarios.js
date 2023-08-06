@@ -4,9 +4,9 @@ class Inventarios extends Model {
     static init(sequelize){
         super.init({
             quantidade_estoque: DataTypes.INTEGER,
-            carroId: DataTypes.INTEGER,
-            createdAt: DataTypes.DATE,
-            updatedAt: DataTypes.DATE
+            id_carro: DataTypes.INTEGER,
+            created_at: DataTypes.DATE,
+            updated_at: DataTypes.DATE
         },{
            sequelize 
         })

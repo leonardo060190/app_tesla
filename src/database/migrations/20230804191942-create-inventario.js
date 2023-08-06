@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('inventario', {
+    await queryInterface.createTable('inventarios', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,7 +14,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      carroId: {
+      id_carro: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -22,11 +22,11 @@ module.exports = {
           key: 'id'
         }
       },
-        createdAt: {
+        created_at: {
           type: Sequelize.DATE,
           allowNull: false
         },
-        updatedAt: {
+        updated_at: {
           type: Sequelize.DATE,
           allowNull: false
         }
@@ -34,7 +34,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('inventario');
+    await queryInterface.dropTable('inventarios');
   }
 };
 

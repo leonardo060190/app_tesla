@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.STRING(50),
         allowNull: false
       },
-      clienteId: {
+      id_cliente: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -26,7 +26,7 @@ module.exports = {
           key: 'id'
         }
       },
-      carroId: {
+      id_carro: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -34,11 +34,11 @@ module.exports = {
           key: 'id'
         }
       },
-        createdAt: {
+        created_at: {
           type: Sequelize.DATE,
           allowNull: false
         },
-        updatedAt: {
+        updated_at: {
           type: Sequelize.DATE,
           allowNull: false
         }

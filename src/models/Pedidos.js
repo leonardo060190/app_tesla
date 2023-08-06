@@ -5,10 +5,10 @@ class Pedidos extends Model {
         super.init({
             data_pedido: DataTypes.DATE,
             status_pedido: DataTypes.STRING,
-            clienteId: DataTypes.INTEGER,
-            carroId: DataTypes.INTEGER,
-            createdAt: DataTypes.DATE,
-            updatedAt: DataTypes.DATE
+            id_cliente: DataTypes.INTEGER,
+            id_carro: DataTypes.INTEGER,
+            created_at: DataTypes.DATE,
+            updated_at: DataTypes.DATE
         },{
            sequelize 
         })

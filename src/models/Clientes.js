@@ -12,8 +12,8 @@ class Clientes extends Model {
             bairro: DataTypes.STRING,
             cidade: DataTypes.STRING,
             estado: DataTypes.STRING,
-            createdAt: DataTypes.DATE,
-            updatedAt: DataTypes.DATE
+            created_at: DataTypes.DATE,
+            updated_at: DataTypes.DATE
         },{
            sequelize 
         })

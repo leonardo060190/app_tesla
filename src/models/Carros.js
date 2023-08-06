@@ -6,8 +6,8 @@ class Carros extends Model {
             modelo: DataTypes.STRING,
             preco: DataTypes.FLOAT,
             caracteristicas: DataTypes.STRING,
-            createdAt: DataTypes.DATE,
-            updatedAt: DataTypes.DATE
+            created_at: DataTypes.DATE,
+            updated_at: DataTypes.DATE
         },{
            sequelize 
         })
