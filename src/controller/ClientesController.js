@@ -31,9 +31,28 @@ module.exports = {
                 } else {
                     res.json({
                         success: true,
-                        Carro: results[0],
+                        cliente: results[0],
                     });
                 }
+            }).catch((error) => {
+                res.status(500).json({
+                    success: false,
+                    message: error.message,
+                });
+            });
+    },
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    async maiorcompra(req, res) {
+        await Clientes.sequelize.query(`SELECT count(*) qtd_de_complas, cli.nome cliente FROM pedidos ped 
+        LEFT JOIN clientes cli ON cli.id = ped.id_cliente
+        LEFT JOIN carros car ON car.id = ped.id_carro
+        group by cli.nome
+        order by qtd_de_complas desc
+        limit 1
+         `)
+            .then(([results, metadata]) => {
+                res.json(results);
             }).catch((error) => {
                 res.status(500).json({
                     success: false,
@@ -49,7 +68,8 @@ module.exports = {
                 telefone = ?,
                 email = ?,
                 rua = ?,
-                numero =?,
+                numero = ?,
+                cep = ?,
                 bairro = ?,
                 cidade = ?,
                 estado = ?,
@@ -58,13 +78,14 @@ module.exports = {
                 id = ?`,
             {
                 replacements: [
-                    req.body.
-                        telefone,
-                    email,
-                    rua,
-                    numero,
-                    bairro,
-                    estado,
+                    req.body.telefone,
+                    req.body.email,
+                    req.body.rua,
+                    req.body.numero,
+                    req.body.cep,
+                    req.body.bairro,
+                    req.body.cidade,
+                    req.body.estado,
                     new Date(),
                     req.params.id
                 ]
@@ -74,7 +95,7 @@ module.exports = {
                 if (metadata.affectedRows === 0) {
                     res.status(404).json({
                         success: false,
-                        message: "Carro não encontrado",
+                        message: "Cliente não encontrado",
                     });
                 } else {
                     res.json({
@@ -141,8 +162,8 @@ module.exports = {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     async delete(req, res) {
-        await Clientes.sequelize.query(`DELETE FROM Clientes WHERE id = ?`,
-            { replacements: [req.params.id] })
+        await Clientes.sequelize.query(`DELETE FROM Clientes WHERE nome = ?`,
+            { replacements: [req.params.nome] })
             .then(([results, metadata]) => {
                 if (metadata.affectedRows === 0) {
                     res.status(404).json({

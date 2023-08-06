@@ -46,27 +46,36 @@ Exercício 1 (Criando Tabelas):
 Você está começando o projeto e precisa definir a estrutura do banco de dados. Crie
 as tabelas para armazenar informações de clientes, carros, pedidos, e inventário.
 
-● Clientes: Campos devem incluir ID, nome, email, telefone, e endereço.
+● Clientes: Campos devem incluir ID, nome, email, telefone, e endereço.   OK
 
-● Carros: Campos devem incluir ID, modelo, preço, e características.
+● Carros: Campos devem incluir ID, modelo, preço, e características.   OK
 
 ● Pedidos: Campos devem incluir ID, ID do cliente, ID do carro, data do pedido,
-status do pedido.
+status do pedido.   OK
 
-● Inventário: Campos devem incluir ID, ID do carro, quantidade em estoque.
+● Inventário: Campos devem incluir ID, ID do carro, quantidade em estoque.  OK
 
 Exercício 2 (Inserção de Dados):
 
 Agora que as tabelas estão prontas, você precisa preenchê-las com alguns dados de
 teste. Escreva comandos SQL para:
 
-● Inserir pelo menos 5 clientes diferentes.
+● Inserir pelo menos 5 clientes diferentes.  
 
 ● Inserir pelo menos 3 modelos diferentes de carros.
 
 ● Inserir pedidos associados a esses clientes e carros.
 
 ● Atualizar o inventário com as quantidades disponíveis dos carros.
+
+UPDATE inventario inv
+JOIN carros car ON inv.carro_id = car.id
+SET inv.quantidade_disponivel = (
+    SELECT COUNT(*)
+    FROM carros
+    WHERE car.id = carros.id
+);
+
 
 Exercício 3 (Consultas Básicas):
 
