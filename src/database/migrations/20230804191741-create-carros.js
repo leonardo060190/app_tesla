@@ -10,27 +10,31 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      modelo: {
-        type: Sequelize.STRING,
-        allowNull: false
+      id_modelo: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'modeloscarros',
+          key: 'id'
+        }
       },
-      preco: {
-        type: Sequelize.FLOAT,
-        allowNull: false
-      },
-      caracteristicas: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      created_at:{
-       type: Sequelize.DATE,
-       allowNull: false
-      },
-      updated_at:{
-       type: Sequelize.DATE,
-       allowNull: false
-      }
-    })
+        preco: {
+          type: Sequelize.FLOAT,
+          allowNull: false
+        },
+        caracteristicas: {
+          type: Sequelize.STRING,
+          allowNull: false
+        },
+        created_at: {
+          type: Sequelize.DATE,
+          allowNull: false
+        },
+        updated_at: {
+          type: Sequelize.DATE,
+          allowNull: false
+        }
+      })
   },
 
   down: async (queryInterface, Sequelize) => {

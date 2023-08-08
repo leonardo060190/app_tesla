@@ -3,6 +3,7 @@ const CarrosController = require('./controller/CarrosController');
 const ClientesController = require('./controller/ClientesController');
 const PedidosController = require('./controller/PedidosController');
 const InventariosController = require('./controller/InventariosController');
+const ModelosCarrosController = require('./controller/ModelosCarrosController');
 
 
 const routes = express.Router();
@@ -37,8 +38,8 @@ routes.delete('/clientes/:nome', ClientesController.delete)
 // Rotas da tabela Inventarios
 routes.get('/inventarios', InventariosController.index)// rota para buscar todos os inventarios
 routes.get('/inventarios/:id', InventariosController.buscaid)
-routes.put('/inventarios/:id', InventariosController.update)
-routes.post('/inventarios', InventariosController.store)
+routes.put('/inventarios', InventariosController.update)
+routes.delete('/inventarios', InventariosController.delete)
 
 
 ////////////////////////////////////////////////////////////////

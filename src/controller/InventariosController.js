@@ -7,7 +7,7 @@ module.exports = {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     async index(req, res) {
-        await Inventarios.sequelize.query(`SELECT * FROM Inventarios ORDER BY updated_at `)
+        await Inventarios.sequelize.query(`SELECT * FROM Inventarios`)
             .then(([results, metadata]) => {
                 res.json(results);
             }).catch((error) => {
@@ -45,77 +45,100 @@ module.exports = {
 
     async update(req, res) {
         try {
-        await Inventarios.sequelize.query(
-            `UPDATE inventarios inv
-            JOIN carros car ON inv.id_carro = car.id
-            SET inv.quantidade_estoque = (
-                SELECT COUNT(*), carros.modelo
-                FROM carros
-                group by carros.nodelo
-            )
-            WHERE inv.id = :id;`,
-            { replacements: { id: req.params.id } }
-        );
+            await Inventarios.sequelize.query(
+                `UPDATE inventarios 
+                LEFT JOIN (
+                    SELECT COUNT(*) AS car_count
+                    FROM carros
+                ) AS car_counts
+                ON inventarios.id_carro = car_counts.id
+                SET inventarios.quantidade_estoque = COALESCE(car_counts.car_count, 0),
+                    inventarios.created_at = :created_at,
+                    inventarios.updated_at = :updated_at`,
+                {
+                    replacements: {
+                        created_at: new Date(), // Replace with the actual value for created_at
+                        updated_at: new Date(), // Replace with the actual value for updated_at
 
-        const affectedRows = result[1].rowCount;
+                    }
+                }
+            );
 
-        if (affectedRows === 0) {
-            res.status(404).json({
+            const affectedRows = res;
+
+            if (affectedRows === 0) {
+                res.status(404).json({
+                    success: false,
+                    message: "Pedido não encontrado",
+                });
+            } else {
+                res.json({
+                    success: true,
+                    message: "Quantidade disponível atualizada com sucesso",
+                });
+            }
+        } catch (error) {
+            res.status(500).json({
                 success: false,
-                message: "Pedido não encontrado",
-            });
-        } else {
-            res.json({
-                success: true,
-                message: "Quantidade disponível atualizada com sucesso",
+                message: error.message,
             });
         }
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: error.message,
-        });
-    }
     },
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    async store(req, res) {
-        await Inventarios.sequelize.query(
-            `INSERT INTO Inventarios (
-                data_pedido, 
-                status_pedido,  
-                id_cliente,
-                id_carro, 
-                created_at, 
-                updated_at) 
-                VALUES (?, ?, ?, ?, ?, ?)`,
-            {
-                replacements:
-                    [
-                        req.body.data_pedido,
-                        req.body.status_pedido,
-                        req.body.id_cliente,
-                        req.body.id_carro,
-                        new Date(),
-                        new Date()
-                    ]
-            }
-        )
+    // async store(req, res) {
+    //     const currentDate = new Date();
+
+    //     const insertQuery = (
+    //         `INSERT INTO inventarios (id_carro, quantidade_estoque, created_at, updated_at)
+    //         SELECT count(modelo), 0, :created_at, :updated_at
+    //         FROM carros
+    //         GROUP BY carros.modelo`);
+
+    //     await Inventarios.sequelize.query(insertQuery, {
+    //         replacements: {
+    //             created_at: currentDate, updated_at: currentDate,
+    //         },
+
+    //     })
+
+    //         .then(([results, metadata]) => {
+    //             res.status(201).json({
+    //                 success: true,
+    //                 message: "Pedido cadastrado com sucesso",
+    //             });
+    //         }).catch((error) => {
+    //             res.status(500).json({
+    //                 success: false,
+    //                 message: error.message,
+    //             });
+    //         });
+    // },
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    
+    async delete(req, res) {
+        await Inventarios.sequelize.query(`DELETE FROM Inventarios`)
             .then(([results, metadata]) => {
-                res.status(201).json({
-                    success: true,
-                    message: "Pedido cadastrado com sucesso",
-                });
+                if (metadata.affectedRows === 0) {
+                    res.status(404).json({
+                        success: false,
+                        message: "id não encontrada",
+                    });
+                } else {
+                    res.json({
+                        success: true,
+                        message: "Carro deletado com sucesso",
+                    });
+                }
             }).catch((error) => {
                 res.status(500).json({
                     success: false,
                     message: error.message,
                 });
-            });
-    },
-    ////////////////////////////////////////////////////////////////////////////////////////////////
+            })
+    }
 
 
 
-    
 };//fim do export

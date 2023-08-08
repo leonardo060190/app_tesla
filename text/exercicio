@@ -60,21 +60,14 @@ Exercício 2 (Inserção de Dados):
 Agora que as tabelas estão prontas, você precisa preenchê-las com alguns dados de
 teste. Escreva comandos SQL para:
 
-● Inserir pelo menos 5 clientes diferentes.  
+● Inserir pelo menos 5 clientes diferentes.  ok
 
-● Inserir pelo menos 3 modelos diferentes de carros.
+● Inserir pelo menos 3 modelos diferentes de carros. ok
 
-● Inserir pedidos associados a esses clientes e carros.
+● Inserir pedidos associados a esses clientes e carros.  ok
 
-● Atualizar o inventário com as quantidades disponíveis dos carros.
+● Atualizar o inventário com as quantidades disponíveis dos carros. nok
 
-UPDATE inventario inv
-JOIN carros car ON inv.carro_id = car.id
-SET inv.quantidade_disponivel = (
-    SELECT COUNT(*)
-    FROM carros
-    WHERE car.id = carros.id
-);
 
 
 Exercício 3 (Consultas Básicas):
@@ -82,44 +75,44 @@ Exercício 3 (Consultas Básicas):
 A equipe de vendas precisa de relatórios rápidos e precisos. Escreva consultas SQL
 para:
 
-● Listar todos os clientes.
+● Listar todos os clientes. ok
 
-● Encontrar todos os pedidos feitos por um cliente específico.
+● Encontrar todos os pedidos feitos por um cliente específico. ok
 
-● Mostrar os carros disponíveis no inventário.
+● Mostrar os carros disponíveis no inventário. nok
 
 Exercício 4 (Consultas com JOIN):
 
 A Tesla precisa de análises mais complexas. Escreva consultas SQL para:
 
-● Listar todos os pedidos junto com informações do cliente e detalhes do carro.
+● Listar todos os pedidos junto com informações do cliente e detalhes do carro. ok
 
-● Mostrar o inventário junto com os detalhes do carro.
+● Mostrar o inventário junto com os detalhes do carro. nok
 
 Exercício 5 (Atualização e Deleção):
 
 As operações de negócios mudam constantemente. Escreva comandos SQL para:
 
-● Atualizar o status de um pedido específico.
+● Atualizar o status de um pedido específico. ok
 
-● Deletar um cliente que deseja ser removido do banco de dados.
+● Deletar um cliente que deseja ser removido do banco de dados. ok
 
 Exercício 6 (Agregação e Agrupamento):
 
 A liderança precisa de métricas. Escreva consultas SQL para:
 
-● Calcular o total de vendas por modelo de carro.
+● Calcular o total de vendas por modelo de carro. ok
 
-● Mostrar o número médio de carros vendidos por mês.
+● Mostrar o número médio de carros vendidos por mês. ok
 
 Exercício 7 (Subconsultas e Views):
 
 Para análises avançadas e relatórios personalizados, escreva consultas SQL para:
 
-● Encontrar o cliente que comprou a maior quantidade de carros.
+● Encontrar o cliente que comprou a maior quantidade de carros. ok
 
 ● Criar uma visão que mostre os detalhes do pedido juntamente com
-informações do cliente e carro.
+informações do cliente e carro.  nok
 
 Esses exercícios foram projetados para cobrir diferentes aspectos do SQL e
 representam tarefas típicas que você enfrentaria ao trabalhar no desenvolvimento
