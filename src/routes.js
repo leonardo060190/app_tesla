@@ -3,7 +3,7 @@ const CarrosController = require('./controller/CarrosController');
 const ClientesController = require('./controller/ClientesController');
 const PedidosController = require('./controller/PedidosController');
 const InventariosController = require('./controller/InventariosController');
-const ModelosCarrosController = require('./controller/ModelosCarrosController');
+const ViewsController = require('./controller/viewsController');
 
 
 const routes = express.Router();
@@ -40,6 +40,7 @@ routes.get('/inventarios', InventariosController.index)// rota para buscar todos
 routes.get('/inventarios/:id', InventariosController.buscaid)
 routes.put('/inventarios', InventariosController.update)
 routes.delete('/inventarios', InventariosController.delete)
+routes.get('/inventarios/detalhes/carros', InventariosController.detalhesCarros)
 
 
 ////////////////////////////////////////////////////////////////
@@ -57,6 +58,8 @@ routes.delete('/pedidos/:id', PedidosController.delete)
 
 
 ////////////////////////////////////////////////////////////////
+
+routes.get('/Views', ViewsController.index)
 
 
 module.exports = routes;// exporta as rotas para do aplicação

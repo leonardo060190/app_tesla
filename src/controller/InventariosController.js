@@ -7,7 +7,27 @@ module.exports = {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     async index(req, res) {
-        await Inventarios.sequelize.query(`SELECT * FROM Inventarios`)
+        await Inventarios.sequelize.query(
+            `SELECT carros.modelo, inventarios.quantidade_estoque FROM Inventarios
+        LEFT JOIN carros on carros.id = inventarios.id_carro`
+        )
+            .then(([results, metadata]) => {
+                res.json(results);
+            }).catch((error) => {
+                res.status(500).json({
+                    success: false,
+                    message: error.message,
+                });
+            });
+    },
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    async detalhesCarros(req, res) {
+        await Inventarios.sequelize.query(
+            `SELECT inv.quantidade_estoque 'qtde estoque', car.modelo, car.preco, car.caracteristicas  FROM Inventarios inv
+            LEFT JOIN carros car on car.id = inv.id_carro`
+        )
             .then(([results, metadata]) => {
                 res.json(results);
             }).catch((error) => {
@@ -46,15 +66,20 @@ module.exports = {
     async update(req, res) {
         try {
             await Inventarios.sequelize.query(
-                `UPDATE inventarios 
+                `
+                UPDATE inventarios
                 LEFT JOIN (
-                    SELECT COUNT(*) AS car_count
+                    SELECT carros.modelo, COUNT(*) AS car_count.modelo
                     FROM carros
+                    GROUP BY carros.modelo
                 ) AS car_counts
-                ON inventarios.id_carro = car_counts.id
+                ON inventarios.id_carro = car_counts.modelo
                 SET inventarios.quantidade_estoque = COALESCE(car_counts.car_count, 0),
                     inventarios.created_at = :created_at,
-                    inventarios.updated_at = :updated_at`,
+                    inventarios.updated_at = :updated_at;
+                
+                
+                `,
                 {
                     replacements: {
                         created_at: new Date(), // Replace with the actual value for created_at
@@ -86,37 +111,7 @@ module.exports = {
     },
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // async store(req, res) {
-    //     const currentDate = new Date();
 
-    //     const insertQuery = (
-    //         `INSERT INTO inventarios (id_carro, quantidade_estoque, created_at, updated_at)
-    //         SELECT count(modelo), 0, :created_at, :updated_at
-    //         FROM carros
-    //         GROUP BY carros.modelo`);
-
-    //     await Inventarios.sequelize.query(insertQuery, {
-    //         replacements: {
-    //             created_at: currentDate, updated_at: currentDate,
-    //         },
-
-    //     })
-
-    //         .then(([results, metadata]) => {
-    //             res.status(201).json({
-    //                 success: true,
-    //                 message: "Pedido cadastrado com sucesso",
-    //             });
-    //         }).catch((error) => {
-    //             res.status(500).json({
-    //                 success: false,
-    //                 message: error.message,
-    //             });
-    //         });
-    // },
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-
-    
     async delete(req, res) {
         await Inventarios.sequelize.query(`DELETE FROM Inventarios`)
             .then(([results, metadata]) => {

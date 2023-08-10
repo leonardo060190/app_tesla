@@ -4,19 +4,16 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('carros', {
+      
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id_modelo: {
+      modelo: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {
-          model: 'modeloscarros',
-          key: 'id'
-        }
       },
         preco: {
           type: Sequelize.FLOAT,

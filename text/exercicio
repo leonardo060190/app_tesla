@@ -79,7 +79,7 @@ para:
 
 ● Encontrar todos os pedidos feitos por um cliente específico. ok
 
-● Mostrar os carros disponíveis no inventário. nok
+● Mostrar os carros disponíveis no inventário. ok
 
 Exercício 4 (Consultas com JOIN):
 
@@ -87,7 +87,7 @@ A Tesla precisa de análises mais complexas. Escreva consultas SQL para:
 
 ● Listar todos os pedidos junto com informações do cliente e detalhes do carro. ok
 
-● Mostrar o inventário junto com os detalhes do carro. nok
+● Mostrar o inventário junto com os detalhes do carro. ok
 
 Exercício 5 (Atualização e Deleção):
 
@@ -112,7 +112,7 @@ Para análises avançadas e relatórios personalizados, escreva consultas SQL pa
 ● Encontrar o cliente que comprou a maior quantidade de carros. ok
 
 ● Criar uma visão que mostre os detalhes do pedido juntamente com
-informações do cliente e carro.  nok
+informações do cliente e carro.  ok
 
 Esses exercícios foram projetados para cobrir diferentes aspectos do SQL e
 representam tarefas típicas que você enfrentaria ao trabalhar no desenvolvimento
