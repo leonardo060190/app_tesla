@@ -58,7 +58,7 @@ routes.delete('/pedidos/:id', PedidosController.delete)
 
 
 ////////////////////////////////////////////////////////////////
-
+// Rotas da tabela Views
 routes.get('/Views', ViewsController.index)
 
 

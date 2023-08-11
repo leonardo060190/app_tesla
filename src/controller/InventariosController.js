@@ -69,15 +69,15 @@ module.exports = {
                 `
                 UPDATE inventarios
                 LEFT JOIN (
-                    SELECT carros.modelo, COUNT(*) AS car_count.modelo
+                    SELECT carros.id, carros.modelo, COUNT(*) AS car_count
                     FROM carros
-                    GROUP BY carros.modelo
+                    GROUP BY carros.id, carros.modelo
+
                 ) AS car_counts
-                ON inventarios.id_carro = car_counts.modelo
+                ON inventarios.id_carro = car_counts.id
                 SET inventarios.quantidade_estoque = COALESCE(car_counts.car_count, 0),
                     inventarios.created_at = :created_at,
                     inventarios.updated_at = :updated_at;
-                
                 
                 `,
                 {
@@ -89,7 +89,7 @@ module.exports = {
                 }
             );
 
-            const affectedRows = res;
+            const affectedRows = res[0];
 
             if (affectedRows === 0) {
                 res.status(404).json({
