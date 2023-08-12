@@ -3,7 +3,7 @@ const CarrosController = require('./controller/CarrosController');
 const ClientesController = require('./controller/ClientesController');
 const PedidosController = require('./controller/PedidosController');
 const InventariosController = require('./controller/InventariosController');
-const ViewsController = require('./controller/viewsController');
+const ViewsController = require('./controller/ViewsController');
 
 
 const routes = express.Router();
