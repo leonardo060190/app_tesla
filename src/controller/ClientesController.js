@@ -5,7 +5,7 @@ const sequelize = require('sequelize');// Importa a biblioteca do Sequelize
 module.exports = {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
+// retorna todos os dados da tabela clientes
     async index(req, res) {
         await Clientes.sequelize.query(`SELECT * FROM Clientes ORDER BY updated_at `)
             .then(([results, metadata]) => {
@@ -18,7 +18,7 @@ module.exports = {
             });
     },
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
+// busca os clientes referente ao id informado
     async buscaid(req, res) {
         await Clientes.sequelize.query(`SELECT * FROM Clientes WHERE id = ?`,
             { replacements: [req.params.id] })
@@ -42,7 +42,7 @@ module.exports = {
             });
     },
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
+// reteorna o cliente que tem mais compras
     async maiorcompra(req, res) {
         await Clientes.sequelize.query(`SELECT count(*) qtd_de_complas, cli.nome cliente FROM pedidos ped 
         LEFT JOIN clientes cli ON cli.id = ped.id_cliente
@@ -59,7 +59,7 @@ module.exports = {
             });
     },
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
+// autera os dados que for refente os id informado
     async update(req, res) {
         await Clientes.sequelize.query(
             `UPDATE Clientes SET 
@@ -110,7 +110,7 @@ module.exports = {
 
     },
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
+//insere os dados na tabela clientes
     async store(req, res) {
         await Clientes.sequelize.query(
             `INSERT INTO Clientes (

@@ -5,7 +5,7 @@ const sequelize = require('sequelize');// Importa a biblioteca do Sequelize
 module.exports = {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
+    // retorna todos os dados da tabela carros ordenados por update_at
     async index(req, res) {
         await Carros.sequelize.query(`SELECT * FROM carros ORDER BY updated_at `)
             .then(([results, metadata]) => {
@@ -18,7 +18,7 @@ module.exports = {
             });
     },
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
+    // retorna os dados refente ao id informado
     async buscaid(req, res) {
         await Carros.sequelize.query(`SELECT * FROM carros WHERE id = ?`,
             { replacements: [req.params.id] })
@@ -42,7 +42,7 @@ module.exports = {
             });
     },
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
+    // altera o preço do carro e atualisa o updated_at  pelo id informado
     async update(req, res) {
         await Carros.sequelize.query(`UPDATE carros SET preco = ?, updated_at = ? WHERE id = ?`,
             { replacements: [req.body.preco, new Date(), req.params.id] }
@@ -68,7 +68,7 @@ module.exports = {
 
     },
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
+    // insere os dados na tabela corros
     async store(req, res) {
         await Carros.sequelize.query(
             `INSERT INTO carros (
@@ -102,7 +102,7 @@ module.exports = {
             });
     },
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
+    // deleta os registros referente ao id informado
     async delete(req, res) {
         await Carros.sequelize.query(`DELETE FROM carros WHERE id = ?`,
             { replacements: [req.params.id] })

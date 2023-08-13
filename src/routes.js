@@ -3,7 +3,7 @@ const CarrosController = require('./controller/CarrosController');
 const ClientesController = require('./controller/ClientesController');
 const PedidosController = require('./controller/PedidosController');
 const InventariosController = require('./controller/InventariosController');
-const ViewsController = require('./controller/viewsController');
+const ViewsController = require('./controller/ViewsController');
 
 
 const routes = express.Router();
@@ -58,7 +58,7 @@ routes.delete('/pedidos/:id', PedidosController.delete)
 
 
 ////////////////////////////////////////////////////////////////
-
+// Rotas da tabela Views
 routes.get('/Views', ViewsController.index)
 
 
