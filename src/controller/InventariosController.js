@@ -8,8 +8,15 @@ module.exports = {
 
     async index(req, res) {
         await Inventarios.sequelize.query(
-            `SELECT carros.modelo, inventarios.quantidade_estoque FROM Inventarios
-        LEFT JOIN carros on carros.id = inventarios.id_carro`
+        `SELECT 
+            modelos.modelo, 
+            inventarios.quantidade_estoque 
+            FROM 
+            Inventarios
+        LEFT JOIN 
+            carros on carros.id = inventarios.id_carro
+        LEFT JOIN
+            modelos on modelos.id = carros.id_modelo`
         )
             .then(([results, metadata]) => {
                 res.json(results);
@@ -25,8 +32,16 @@ module.exports = {
 
     async detalhesCarros(req, res) {
         await Inventarios.sequelize.query(
-            `SELECT inv.quantidade_estoque 'qtde estoque', car.modelo, car.preco, car.caracteristicas  FROM Inventarios inv
-            LEFT JOIN carros car on car.id = inv.id_carro`
+            `SELECT 
+                inv.quantidade_estoque 'qtde estoque', 
+                mod.modelo, 
+                car.preco, 
+                car.caracteristicas  
+            FROM Inventarios inv
+            LEFT JOIN 
+                carros car on car.id = inv.id_carro
+            LEFT JOIN
+                modelos mod on mod.id = car.id_modelo`
         )
             .then(([results, metadata]) => {
                 res.json(results);
@@ -69,12 +84,15 @@ module.exports = {
                 `
                 UPDATE inventarios
                 LEFT JOIN (
-                    SELECT carros.modelo, COUNT(*) AS car_count.modelo
+                    SELECT carros.id_modelo, COUNT(*) AS car_count_modelo
                     FROM carros
-                    GROUP BY carros.modelo
+                LEFT JOIN 
+                    modelos ON modelos.id = carros.id_modelo
+                GROUP BY 
+                    modelos.modelo
                 ) AS car_counts
                 ON inventarios.id_carro = car_counts.modelo
-                SET inventarios.quantidade_estoque = COALESCE(car_counts.car_count, 0),
+                SET inventarios.quantidade_estoque = COALESCE(car_counts.car_count_modelo, 0),
                     inventarios.created_at = :created_at,
                     inventarios.updated_at = :updated_at;
                 

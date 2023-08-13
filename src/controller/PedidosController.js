@@ -86,8 +86,9 @@ module.exports = {
     },
     ////////////////////////////////////////////////////////////////////////////////////////////////
     async buscavenda(req, res) {
-        await Pedidos.sequelize.query(`select count(*) 'qtd carros', sum(preco), carros.modelo from pedidos 
+        await Pedidos.sequelize.query(`select count(*) 'qtd carros', sum(preco), modelos.modelo from pedidos 
         left join carros on carros.id = pedidos.id_carro
+        left join modelos on modelos.id = carros.id_modelo
         where pedidos.status_pedido = "vendido"
         group by carros.modelo`
         )

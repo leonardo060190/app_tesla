@@ -48,8 +48,6 @@ module.exports = {
         LEFT JOIN clientes cli ON cli.id = ped.id_cliente
         LEFT JOIN carros car ON car.id = ped.id_carro
         group by cli.nome
-        order by qtd_de_complas desc
-        limit 1
          `)
             .then(([results, metadata]) => {
                 res.json(results);
