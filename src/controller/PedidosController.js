@@ -90,7 +90,7 @@ module.exports = {
         left join carros on carros.id = pedidos.id_carro
         left join modelos on modelos.id = carros.id_modelo
         where pedidos.status_pedido = "vendido"
-        group by carros.modelo`
+        group by modelos.modelo`
         )
             .then(([results, metadata]) => {
                 res.json(results);

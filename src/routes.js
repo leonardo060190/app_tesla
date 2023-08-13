@@ -3,6 +3,7 @@ const CarrosController = require('./controller/CarrosController');
 const ClientesController = require('./controller/ClientesController');
 const PedidosController = require('./controller/PedidosController');
 const InventariosController = require('./controller/InventariosController');
+const ModelosController = require('./controller/ModelosController');
 const ViewsController = require('./controller/ViewsController');
 
 
@@ -30,7 +31,7 @@ routes.get('/clientes/:id', ClientesController.buscaid)
 routes.get('/clientes/maior/compra', ClientesController.maiorcompra)
 routes.put('/clientes/:id', ClientesController.update)
 routes.post('/clientes', ClientesController.store)
-routes.delete('/clientes/:nome', ClientesController.delete)
+routes.delete('/clientes/:id', ClientesController.delete)
 
 
 ////////////////////////////////////////////////////////////////
@@ -56,6 +57,14 @@ routes.put('/pedidos/:id', PedidosController.update)
 routes.post('/pedidos', PedidosController.store)
 routes.delete('/pedidos/:id', PedidosController.delete)
 
+
+////////////////////////////////////////////////////////////////
+
+//Rotas da tabela Modelos
+routes.get('/modelos', ModelosController.index)// rota para buscar todos os modelos
+routes.get('/modelos/:id', ModelosController.buscaid)
+routes.post('/modelos', ModelosController.store)
+routes.delete('/modelos/:id', ModelosController.delete)
 
 ////////////////////////////////////////////////////////////////
 // Rotas da tabela Views

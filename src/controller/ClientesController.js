@@ -160,7 +160,7 @@ module.exports = {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     async delete(req, res) {
-        await Clientes.sequelize.query(`DELETE FROM Clientes WHERE nome = ?`,
+        await Clientes.sequelize.query(`DELETE FROM Clientes WHERE id = ?`,
             { replacements: [req.params.nome] })
             .then(([results, metadata]) => {
                 if (metadata.affectedRows === 0) {

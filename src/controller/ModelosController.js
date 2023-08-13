@@ -49,7 +49,7 @@ module.exports = {
             `INSERT INTO modelos (
                 modelo, 
                 created_at, 
-                updated_at) 
+                updated_at ) 
                 VALUES (?, ?, ?)`,
             {
                 replacements:

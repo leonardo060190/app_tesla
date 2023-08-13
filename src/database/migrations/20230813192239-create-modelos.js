@@ -11,7 +11,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       modelo: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
       },
         created_at: {
